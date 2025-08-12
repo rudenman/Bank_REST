@@ -74,7 +74,6 @@ class CardServiceTest {
         when(userRepository.findByUsername("johndoe")).thenReturn(Optional.of(user));
         when(cardRepository.existsByCardNumber(anyString())).thenReturn(false);
 
-        // Чтобы проверить корректность сохранения, захватим Card
         ArgumentCaptor<Card> captor = ArgumentCaptor.forClass(Card.class);
         when(cardRepository.save(captor.capture())).thenAnswer(invocation -> {
             Card card = invocation.getArgument(0);
@@ -263,7 +262,6 @@ class CardServiceTest {
         assertEquals("Card is not active", ex.getMessage());
     }
 
-    // Вспомогательный метод для безопасного шифрования в тестах
     private String encryptSafe(String cardNumber) {
         try {
             return cardService.encrypt(cardNumber);
