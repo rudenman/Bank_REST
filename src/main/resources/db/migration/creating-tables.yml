@@ -81,7 +81,7 @@ databaseChangeLog:
                     primaryKey: true
               - column:
                   name: card_number
-                  type: VARCHAR(16)
+                  type: VARCHAR(100)
                   constraints:
                     unique: true
                     nullable: false
