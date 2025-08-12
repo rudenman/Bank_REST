@@ -1,5 +1,7 @@
 package com.example.bankcards.entity;
 
+import com.example.bankcards.entity.enums.UserRole;
+import com.example.bankcards.entity.enums.UserStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
