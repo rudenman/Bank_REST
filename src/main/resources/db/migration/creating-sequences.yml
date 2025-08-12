@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: "sequence_1"
+      author: danila_rudenko
+      changes:
+        - createSequence:
+            sequenceName: users_seq
+            startValue: 2
+            incrementBy: 50
+
+  - changeSet:
+      id: "sequence_2"
+      author: danila_rudenko
+      changes:
+        - createSequence:
+            sequenceName: cards_seq
+            startValue: 1
+            incrementBy: 50
+
+  - changeSet:
+      id: "sequence_3"
+      author: danila_rudenko
+      changes:
+        - createSequence:
+            sequenceName: card_requests_seq
+            startValue: 1
+            incrementBy: 50

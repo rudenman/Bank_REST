@@ -1,7 +1,7 @@
 databaseChangeLog:
 
   - changeSet:
-      id: 6
+      id: "data_1"
       author: danila_rudenko
       preConditions:
         - onFail: MARK_RAN
@@ -10,11 +10,14 @@ databaseChangeLog:
             tableName: users
             columns:
               - column:
+                  name: id
+                  value: "1"
+              - column:
                   name: username
                   value: "admin"
               - column:
                   name: password
-                  value: "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
+                  value: "$2a$10$.NuxW/cjAgEla9xzBBNMle05OHHQCgeioLhR7D8uWYi/DLpIGmeHu"
               - column:
                   name: email
                   value: "admin@example.com"

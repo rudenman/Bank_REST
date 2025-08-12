@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
+      id: "table_1"
       author: danila_rudenko
       preConditions:
         - onFail: MARK_RAN
@@ -14,8 +14,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: BIGSERIAL
-                  autoIncrement: true
+                  type: BIGINT
                   constraints:
                     primaryKey: true
               - column:
@@ -64,7 +63,7 @@ databaseChangeLog:
 
 
   - changeSet:
-      id: 2
+      id: "table_2"
       author: danila_rudenko
       preConditions:
         - onFail: MARK_RAN
@@ -77,8 +76,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: BIGSERIAL
-                  autoIncrement: true
+                  type: BIGINT
                   constraints:
                     primaryKey: true
               - column:
@@ -117,7 +115,7 @@ databaseChangeLog:
                     nullable: false
 
   - changeSet:
-      id: 3
+      id: "table_3"
       author: danila_rudenko
       preConditions:
         - onFail: MARK_RAN
@@ -130,7 +128,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: BIGSERIAL
+                  type: BIGINT
                   constraints:
                     primaryKey: true
                     nullable: false

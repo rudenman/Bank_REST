@@ -1,7 +1,7 @@
 databaseChangeLog:
 
   - changeSet:
-      id: 4
+      id: "constraints_1"
       author: danila_rudenko
       preConditions:
         - onFail: MARK_RAN
@@ -23,7 +23,7 @@ databaseChangeLog:
 
 
   - changeSet:
-      id: 5
+      id: "constraints_2"
       author: danila_rudenko
       preConditions:
         - onFail: MARK_RAN
