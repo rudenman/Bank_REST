@@ -1,26 +1,7 @@
 databaseChangeLog:
-  - changeSet:
-      id: 9
-      author: danila_rudenko
-      preConditions:
-        - onFail: MARK_RAN
-      changes:
-        - addForeignKeyConstraint:
-            baseTableName: users
-            baseColumnNames: role_id
-            referencedTableName: roles
-            referencedColumnNames: id
-            constraintName: fk_users_role
-        - addForeignKeyConstraint:
-            baseTableName: users
-            baseColumnNames: status_id
-            referencedTableName: user_status
-            referencedColumnNames: id
-            constraintName: fk_users_status
-
 
   - changeSet:
-      id: 10
+      id: 4
       author: danila_rudenko
       preConditions:
         - onFail: MARK_RAN
@@ -31,12 +12,6 @@ databaseChangeLog:
             referencedTableName: users
             referencedColumnNames: id
             constraintName: fk_cards_user
-        - addForeignKeyConstraint:
-            baseTableName: cards
-            baseColumnNames: status_id
-            referencedTableName: card_status
-            referencedColumnNames: id
-            constraintName: fk_cards_status
         - sql:
             sql: |
               ALTER TABLE cards
@@ -48,7 +23,7 @@ databaseChangeLog:
 
 
   - changeSet:
-      id: 11
+      id: 5
       author: danila_rudenko
       preConditions:
         - onFail: MARK_RAN
@@ -67,17 +42,3 @@ databaseChangeLog:
             referencedTableName: users
             referencedColumnNames: id
             constraintName: fk_card_requests_user
-
-        - addForeignKeyConstraint:
-            baseTableName: card_requests
-            baseColumnNames: request_type_id
-            referencedTableName: request_types
-            referencedColumnNames: id
-            constraintName: fk_card_requests_request_type
-
-        - addForeignKeyConstraint:
-            baseTableName: card_requests
-            baseColumnNames: status_id
-            referencedTableName: request_statuses
-            referencedColumnNames: id
-            constraintName: fk_card_requests_status
