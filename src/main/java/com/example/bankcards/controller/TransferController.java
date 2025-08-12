@@ -2,6 +2,8 @@ package com.example.bankcards.controller;
 
 import com.example.bankcards.dto.TransferRequest;
 import com.example.bankcards.service.TransferService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/transfers")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "Authorization")
 public class TransferController {
 
     private final TransferService transferService;
 
+    @Operation(summary = "Выполнить перевод", description = "Требуется JWT токен в заголовке Authorization")
     @PostMapping("/transfer")
     public ResponseEntity<?> transfer(@Valid @RequestBody TransferRequest request) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();

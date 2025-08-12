@@ -3,6 +3,8 @@ package com.example.bankcards.controller;
 import com.example.bankcards.dto.CardDto;
 import com.example.bankcards.dto.TopUpRequest;
 import com.example.bankcards.service.CardService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,10 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/cards")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "Authorization")
 public class CardController {
 
     private final CardService cardService;
 
+    @Operation(summary = "Получить страницы карт пользователя")
     @GetMapping("all")
     public ResponseEntity<Page<CardDto>> getUserCards(
             @RequestParam(defaultValue = "0") int page,
@@ -39,6 +43,7 @@ public class CardController {
         return ResponseEntity.ok(cards);
     }
 
+    @Operation(summary = "Создать новую карту для текущего пользователя")
     @PostMapping("/create")
     public ResponseEntity<CardDto> createCard() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -46,6 +51,8 @@ public class CardController {
         return ResponseEntity.ok(card);
     }
 
+
+    @Operation(summary = "Получить детали карты по id")
     @GetMapping("/{id}")
     public ResponseEntity<CardDto> getCardDetails(@PathVariable Long id) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -53,6 +60,7 @@ public class CardController {
         return ResponseEntity.ok(card);
     }
 
+    @Operation(summary = "Пополнить карту")
     @PatchMapping("/{id}/topup")
     public ResponseEntity<?> topUpCard(
             @PathVariable Long id,
