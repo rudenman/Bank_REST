@@ -1,6 +1,6 @@
 package com.example.bankcards.config;
 
-import com.example.bankcards.security.CustomUserDetailsService;
+import com.example.bankcards.security.UserDetailsServiceImpl;
 import com.example.bankcards.security.JwtAuthenticationFilter;
 import com.example.bankcards.security.JwtProvider;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
 
-    private final CustomUserDetailsService userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
     private final JwtProvider jwtProvider;
 
     @Bean
