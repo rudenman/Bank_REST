@@ -22,3 +22,7 @@ spring:
     change-log: classpath:db/migration/master.yml
     default-schema: public
     contexts: dev
+
+jwt:
+  secret: { JWT_SECRET }
+  expirationMs: 86400000
