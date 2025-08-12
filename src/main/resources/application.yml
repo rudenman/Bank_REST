@@ -26,3 +26,5 @@ spring:
 jwt:
   secret: { JWT_SECRET }
   expirationMs: 86400000
+bankcards:
+  bin: "400000"
