@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.Instant;
 
 @Entity
 @Table(name = "card_requests")
@@ -51,5 +51,5 @@ public class CardRequest {
     private CardRequestStatus status = CardRequestStatus.PENDING;
 
     @Column(name = "created_at", nullable = false)
-    private LocalDate createdAt = LocalDate.now();
+    private Instant createdAt = Instant.now();
 }
