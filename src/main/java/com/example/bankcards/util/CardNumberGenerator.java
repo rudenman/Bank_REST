@@ -1,10 +1,22 @@
 package com.example.bankcards.util;
 
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.concurrent.atomic.AtomicLong;
 
 public class CardNumberGenerator {
 
-    private static final String BIN = "400000"; // Можно вынести в application.yml
+    @Value("${bankcards.bin}")
+    private String binValue;
+
+    public static String BIN;
+
+    @PostConstruct
+    public void init() {
+        BIN = binValue;
+    }
+
     private static final AtomicLong sequence = new AtomicLong(1000);
 
     /**
