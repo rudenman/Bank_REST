@@ -16,10 +16,6 @@ databaseChangeLog:
             sql: |
               ALTER TABLE cards
               ADD CONSTRAINT chk_cards_balance_nonnegative CHECK (balance >= 0);
-        - sql:
-            sql: |
-              ALTER TABLE cards
-              ADD CONSTRAINT chk_cards_number_format CHECK (card_number ~ '^[0-9]{16}$');
 
 
   - changeSet:
