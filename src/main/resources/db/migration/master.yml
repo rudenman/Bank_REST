@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: db/migration/creating-tables.yml
+  - include:
+      file: db/migration/adding-constraints.yml
+  - include:
+      file: db/migration/inserting-data.yml

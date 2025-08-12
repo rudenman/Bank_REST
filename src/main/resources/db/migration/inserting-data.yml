@@ -1,0 +1,163 @@
+databaseChangeLog:
+  - changeSet:
+      id: 12
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+      changes:
+        - insert:
+            tableName: card_status
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: name
+                  value: "ACTIVE"
+        - insert:
+            tableName: card_status
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 2
+              - column:
+                  name: name
+                  value: "BLOCKED"
+        - insert:
+            tableName: card_status
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 3
+              - column:
+                  name: name
+                  value: "EXPIRED"
+
+  - changeSet:
+      id: 13
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+      changes:
+        - insert:
+            tableName: user_status
+            columns:
+              - column:
+                  name: name
+                  value: "ACTIVE"
+        - insert:
+            tableName: user_status
+            columns:
+              - column:
+                  name: name
+                  value: "BLOCKED"
+
+  - changeSet:
+      id: 14
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: "ADMIN"
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: "USER"
+
+  - changeSet:
+      id: 15
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: "admin"
+              - column:
+                  name: password
+                  value: "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
+              - column:
+                  name: email
+                  value: "admin@example.com"
+              - column:
+                  name: first_name
+                  value: "System"
+              - column:
+                  name: last_name
+                  value: "Administrator"
+              - column:
+                  name: created_at
+                  valueComputed: "CURRENT_TIMESTAMP"
+              - column:
+                  name: role_id
+                  valueNumeric: 1
+              - column:
+                  name: status_id
+                  valueNumeric: 1
+
+  - changeSet:
+      id: 16
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+      changes:
+        - insert:
+            tableName: request_types
+            columns:
+              - column:
+                  name: name
+                  value: "BLOCK"
+        - insert:
+            tableName: request_types
+            columns:
+              - column:
+                  name: name
+                  value: "ACTIVATE"
+        - insert:
+            tableName: request_types
+            columns:
+              - column:
+                  name: name
+                  value: "DELETE"
+        - insert:
+            tableName: request_types
+            columns:
+              - column:
+                  name: name
+                  value: "CREATE"
+
+  - changeSet:
+      id: 17
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+      changes:
+        - insert:
+            tableName: request_statuses
+            columns:
+              - column:
+                  name: name
+                  value: "PENDING"
+        - insert:
+            tableName: request_statuses
+            columns:
+              - column:
+                  name: name
+                  value: "APPROVED"
+        - insert:
+            tableName: request_statuses
+            columns:
+              - column:
+                  name: name
+                  value: "REJECTED"
+

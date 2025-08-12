@@ -1,0 +1,285 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: users
+      context: dev
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  autoIncrement: true,
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: username
+                  type: VARCHAR(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(100)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: status_id
+                  type: INT
+                  defaultValue: "1"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: INT
+                  defaultValue: "2"
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: roles
+      changes:
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(20)
+                  constraints:
+                    unique: true
+                    nullable: false
+
+
+  - changeSet:
+      id: 3
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: cards
+      changes:
+        - createTable:
+            tableName: cards
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: card_number
+                  type: VARCHAR(16)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: expiry_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status_id
+                  type: INT
+                  defaultValue: "1"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: balance
+                  type: DECIMAL(15, 2)
+                  defaultValue: "0.00"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 4
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: card_status
+      changes:
+        - createTable:
+            tableName: card_status
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(20)
+                  constraints:
+                    unique: true
+                    nullable: false
+
+  - changeSet:
+      id: 5
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: user_status
+      changes:
+        - createTable:
+            tableName: user_status
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(30)
+                  constraints:
+                    unique: true
+                    nullable: false
+
+  - changeSet:
+      id: 6
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: request_types
+      changes:
+        - createTable:
+            tableName: request_types
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(30)
+                  constraints:
+                    unique: true
+                    nullable: false
+
+  - changeSet:
+      id: 7
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: request_statuses
+      changes:
+        - createTable:
+            tableName: request_statuses
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(30)
+                  constraints:
+                    unique: true
+                    nullable: false
+
+  - changeSet:
+      id: 8
+      author: danila_rudenko
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: card_requests
+      changes:
+        - createTable:
+            tableName: card_requests
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: card_id
+                  type: BIGINT
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: request_type_id
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status_id
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: DATE
+                  defaultValueComputed: CURRENT_DATE
+                  constraints:
+                    nullable: false
